@@ -38,7 +38,7 @@ spring:
     # 用户名
     username: 1442803701@qq.com
     # 授权码，就是我们刚才准备工作获取的代码
-    password: lvbmsvicdtfuhibd
+    password:
     # 其它参数
     properties:
       mail:
