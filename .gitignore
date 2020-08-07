@@ -1,0 +1,7 @@
+# Project exclude paths
+/sc-business/commons-domain/target/
+/sc-business/document-center/target/
+/sc-business/file-center/target/
+/sc-business/message-center/target/
+/sc-business/user-center/target/
+/sc-config/target/

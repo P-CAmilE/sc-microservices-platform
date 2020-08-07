@@ -1,0 +1,30 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: document-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${sc.nacos.discovery.server-addr}
+    stream:
+      # Binding 配置项，对应 BindingProperties Map
+      bindings:
+        document-service-output:
+          destination: DOCUMENT-MESSAGE-TOPIC # 目的地。这里使用 RocketMQ Topic
+          content-type: application/json # 内容格式。这里使用 JSON
+      # Spring Cloud Stream RocketMQ 配置项
+      rocketmq:
+        # RocketMQ Binder 配置项，对应 RocketMQBinderConfigurationProperties 类
+        binder:
+          name-server: ${sc.rocketmq.name-server} # RocketMQ Namesrv 地址
+        # RocketMQ 自定义 Binding 配置项，对应 RocketMQBindingProperties Map
+        bindings:
+          document-service-output:
+            # RocketMQ Producer 配置项，对应 RocketMQProducerProperties 类
+            producer:
+              group: document-producer-group # 生产者分组
+              sync: false # 是否同步发送消息，默认为 false 异步
+feign:
+  sentinel:
+    enabled: true

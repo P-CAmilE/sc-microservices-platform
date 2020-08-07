@@ -1,0 +1,9 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: user-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${sc.nacos.discovery.server-addr}
