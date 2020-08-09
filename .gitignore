@@ -5,3 +5,18 @@
 /sc-business/message-center/target/
 /sc-business/user-center/target/
 /sc-config/target/
+
+target/
+
+### STS ###
+.project
+.settings
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/

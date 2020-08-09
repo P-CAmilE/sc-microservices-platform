@@ -19,7 +19,7 @@ public class FileSystem {
      * 文件 id
      */
 //    @TableId(type = IdType.UUID)
-    private String fileId;
+    private int fileId;
     /**
      * 文件大小
      */
@@ -40,10 +40,6 @@ public class FileSystem {
      * 文件上传者姓名
      */
     private String uploaderName;
-    /**
-     * 文件标签
-     */
-    private String fileTag;
     /**
      * 文件描述信息
      */
