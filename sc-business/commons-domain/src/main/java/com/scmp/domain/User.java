@@ -1,11 +1,13 @@
 package com.scmp.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 /**
  * @author Coconut Tree
@@ -28,7 +30,10 @@ public class User {
     private int userType;
     private String userName;
     private int userDepartmentId;
-    private Time userStartTime;
-    private Time userEndTime;
+    private String userEmail;
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime userStartTime;
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime userEndTime;
 
 }
