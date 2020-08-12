@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/commons-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/sc-zdemos/pom.xml" />
         <option value="$PROJECT_DIR$/user-center/pom.xml" />
       </set>
     </option>

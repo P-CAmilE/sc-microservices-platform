@@ -1,0 +1,33 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.168.3:8848
+        service: ${spring.application.name}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          url-expression: "'lb://' + serviceId"
+      routes:
+        - id: service-user
+          uri: lb://service-user
+          predicates:
+            - Path=/user/**
+          filters:
+            - SwaggerHeaderFilter
+            - StripPrefix=1
+        - id:  service-order
+          uri: lb://service-order
+          predicates:
+            - Path=/order/**
+          filters:
+            - SwaggerHeaderFilter
+            - StripPrefix=1
+logging:
+  level:
+    org.springframework:cloud.gateway: debug

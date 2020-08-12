@@ -11,6 +11,7 @@
         <module name="commons-domain" />
         <module name="sc-config" />
         <module name="user-center" />
+        <module name="zdemos" />
         <module name="file-center" />
         <module name="document-center" />
         <module name="sc-monitor" />
@@ -19,5 +20,11 @@
         <module name="sc-commons" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="knife4j-apigateway" target="1.8" />
+      <module name="knife4j-service-user" target="1.8" />
+      <module name="knife4j-spring-cloud-gateway" target="1.8" />
+      <module name="sc-zdemos" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
