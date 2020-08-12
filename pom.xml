@@ -15,7 +15,7 @@
         <module>sc-monitor</module>
         <module>sc-uua</module>
         <module>sc-commons</module>
-        <module>zdemos</module>
+<!--        <module>zdemos</module>-->
     </modules>
 
     <properties>
