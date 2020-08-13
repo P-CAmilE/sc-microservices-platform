@@ -15,7 +15,7 @@ sc-microservices-platform -- 父项目，公共依赖
 │  │─sc-commons -- 通用工具一级工程
 │  │  ├─尚未编码，可以自定义一些 spring-boot-starter
 │  ├─sc-config -- 配置中心，其余模块可以引入该以来，统一配置
-│  ├─sc-gateway -- api网关一级工程
+│  ├─sc-gateway -- api网关一级工程[8080]
 │  │  ├─尚未编码，可以自定义一些 spring-boot-starter
 │  ├─zlt-monitor -- 监控一级工程
 │  │  ├─sc-admin -- 应用监控--尚未开发

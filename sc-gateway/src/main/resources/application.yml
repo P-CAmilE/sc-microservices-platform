@@ -1,34 +1,21 @@
 server:
-  port: 8082
+  port: 8080
 
 spring:
-  servlet:
-    multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
   application:
-    name: file-service
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.168.3/sc-dev?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-    username: root
-    password: root
+    name: sc-gateway
   cloud:
     nacos:
       discovery:
-        server-addr: ${sc.nacos.discovery.server-addr}
+            server-addr: ${sc.nacos.discovery.server-addr}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+#      routes:
+#        - id: user_route
+#          url: lb://service-user
 
-# mybatis-plus 配置内容
-mybatis-plus:
-  configuration:
-    map-underscore-to-camel-case: true # 虽然默认为 true ，但是还是显示去指定下。
-  global-config:
-    db-config:
-      id-type: auto # ID 主键自增
-      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
-      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-  mapper-locations: classpath*:mapper/*.xml
-  type-aliases-package: com.scmp.domain
 
 # logging
 logging:
