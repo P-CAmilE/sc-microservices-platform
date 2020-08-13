@@ -24,4 +24,6 @@ public interface UserService {
 
     boolean checkUserTime(String userAccount);
 
+    User verifyToken(String token);
+
 }

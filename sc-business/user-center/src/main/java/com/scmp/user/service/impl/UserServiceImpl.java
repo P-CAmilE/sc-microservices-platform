@@ -1,17 +1,19 @@
 package com.scmp.user.service.impl;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.scmp.domain.User;
 import com.scmp.domain.exception.UserRepeatException;
 import com.scmp.user.dao.UserDao;
 import com.scmp.user.service.UserService;
+import com.scmp.user.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -89,12 +91,31 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkUserTime(String userAccount) {
         User user = getUserByAccount(userAccount);
-        if(user.getUserStartTime() == null && user.getUserEndTime() == null)
+        if(user.getUserStartTime() == null || user.getUserEndTime() == null)
             return true;
         LocalTime time = LocalTime.now();
         if(after(time,user.getUserEndTime()) || before(time,user.getUserStartTime()))
             return true;
         return false;     //otherwise: between start and end, or just equals start or end
+    }
+
+    @Override
+    public User verifyToken(String token) {
+        Map<String, String> resultMap = null;
+        User user = new User();
+        try {
+            resultMap = TokenUtil.verifyToken(token);
+            user.setUserId(Integer.valueOf(resultMap.get("userId")));
+            user.setUserAccount(resultMap.get("userAccount"));
+            user.setUserType(Integer.valueOf(resultMap.get("userType")));
+        }catch (JWTVerificationException e) {
+            e.printStackTrace();
+            throw new UserRepeatException(403, "token解码错误");
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+            throw new UserRepeatException(403, "token内容错误");
+        }
+        return user;
     }
 
     /**

@@ -4,12 +4,8 @@ import com.scmp.domain.ResultVO;
 import com.scmp.domain.User;
 import com.scmp.user.service.UserService;
 import com.scmp.user.utils.TokenUtil;
-import com.auth0.jwt.exceptions.SignatureVerificationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -19,16 +15,16 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResultVO<Object> register(@RequestParam("account") String account,
-                                     @RequestParam("password") String password) {
-        userService.register(account, password);
+    public ResultVO<Object> register(@RequestParam("userAccount") String userAccount,
+                                     @RequestParam("userPassword") String userPassword) {
+        userService.register(userAccount, userPassword);
         return new ResultVO<>(200, "success", null);
     }
 
     @PostMapping("/login")
-    public ResultVO<Object> login(@RequestParam("account") String account,
-                                  @RequestParam("password") String password) {
-        User user = userService.login(account, password);
+    public ResultVO<User> login(@RequestParam("userAccount") String userAccount,
+                                  @RequestParam("userPassword") String userPassword) {
+        User user = userService.login(userAccount, userPassword);
         return new ResultVO<>(200, TokenUtil.getToken(user), user);
     }
 
@@ -64,16 +60,9 @@ public class UserController {
         return new ResultVO<>(200, "success", userService.getUserByDepartmentId(userDepartmentId));
     }
 
-    @PostMapping("/VerifyToken")
+    @GetMapping("/VerifyToken")
     public ResultVO<Object> verifyToken(@RequestParam("token") String token) {
-        Map<String, String> resultMap = new HashMap<>();
-        try {
-            resultMap = TokenUtil.verifyToken(token);
-            return new ResultVO<>(200, "success", resultMap);
-        }catch (SignatureVerificationException e){
-            e.printStackTrace();
-            return new ResultVO<>(200, "success", resultMap);
-        }
+        return new ResultVO<>(200, "success", userService.verifyToken(token));
     }
 
     /**
