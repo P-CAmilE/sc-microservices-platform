@@ -13,9 +13,17 @@ spring:
         locator:
           enabled: true
 #      routes:
-#        - id: user_route
-#          url: lb://service-user
+#        - id: route_user
+#          uri: http://localhost:8084
+#          order: 1
+#          predicates:
+#            - Path=/service-user/**
+#          filters:
+#            - StripPrefix=1
 
+feign:
+  sentinel:
+    enabled: true
 
 # logging
 logging:
