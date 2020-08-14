@@ -4,23 +4,57 @@ server:
 spring:
   application:
     name: sc-gateway
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.168.3/sc-dev-file?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+  # Zipkin 配置项，对应 ZipkinProperties 类
+  zipkin:
+    base-url: ${sc.zipkin.base-url} # Zipkin 服务的地址
+    discovery-client-enabled: false # 让 nacos 把它当作一个 url，而不是服务
+  # Spring Cloud Sleuth 配置项
+  sleuth:
+    # Spring Cloud Sleuth 针对 Web 组件的配置项，例如说 SpringMVC
+    web:
+      enabled: true # 是否开启，默认为 true
+    sampler:
+      probability: 1.0 # 采样百分比
   cloud:
     nacos:
       discovery:
             server-addr: ${sc.nacos.discovery.server-addr}
+            service: ${spring.application.name}
+    # Sentinel 配置项，对应 SentinelProperties 配置属性类
+    sentinel:
+      enabled: true # 是否开启。默认为 true 开启
+      eager: true # 是否饥饿加载。默认为 false 关闭
+      transport:
+        dashboard: ${sc.sentinel.dashboard} # Sentinel 控制台地址
+      filter:
+        url-patterns: /** # 拦截请求的地址。默认为 /*
     gateway:
       discovery:
         locator:
           enabled: true
-#      routes:
-#        - id: route_user
-#          uri: http://localhost:8084
-#          order: 1
-#          predicates:
-#            - Path=/user-service/**
-#          filters:
-#            - StripPrefix=1
-
+          url-expression: "'lb://' + serviceId"
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/department/**
+        - id: file-service
+          uri: lb://file-service
+          predicates:
+            - Path=/file/**
+        - id: document-service
+          uri: lb://document-service
+          predicates:
+            - Path=/document/**
 feign:
   sentinel:
     enabled: true

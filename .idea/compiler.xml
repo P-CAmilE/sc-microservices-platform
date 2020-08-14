@@ -7,17 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="sc-uua" />
+        <module name="log-center" />
         <module name="commons-domain" />
         <module name="sc-config" />
         <module name="user-center" />
         <module name="file-center" />
         <module name="document-center" />
-        <module name="sc-monitor" />
         <module name="message-center" />
         <module name="sc-gateway" />
-        <module name="sc-commons" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="log-center" target="1.8" />
+      <module name="sc-commons" target="1.8" />
+      <module name="sc-monitor" target="1.8" />
+      <module name="sc-uua" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

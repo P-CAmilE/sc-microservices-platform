@@ -6,9 +6,20 @@ spring:
     name: user-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/sc-dev?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.168.3:3306/sc-dev?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
     username: root
-    password: 13518360063
+    password: root
+  # Zipkin 配置项，对应 ZipkinProperties 类
+  zipkin:
+    base-url: ${sc.zipkin.base-url} # Zipkin 服务的地址
+    discovery-client-enabled: false # 让 nacos 把它当作一个 url，而不是服务
+  # Spring Cloud Sleuth 配置项
+  sleuth:
+    # Spring Cloud Sleuth 针对 Web 组件的配置项，例如说 SpringMVC
+    web:
+      enabled: true # 是否开启，默认为 true
+    sampler:
+      probability: 1.0 # 采样百分比
   cloud:
     nacos:
       discovery:

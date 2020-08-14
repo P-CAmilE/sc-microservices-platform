@@ -3,6 +3,22 @@ server:
 spring:
   application:
     name: message-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.168.3/sc-dev-file?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+  # Zipkin 配置项，对应 ZipkinProperties 类
+  zipkin:
+    base-url: ${sc.zipkin.base-url} # Zipkin 服务的地址
+    discovery-client-enabled: false # 让 nacos 把它当作一个 url，而不是服务
+  # Spring Cloud Sleuth 配置项
+  sleuth:
+    # Spring Cloud Sleuth 针对 Web 组件的配置项，例如说 SpringMVC
+    web:
+      enabled: true # 是否开启，默认为 true
+    sampler:
+      probability: 1.0 # 采样百分比
   cloud:
     nacos:
       discovery:
@@ -15,6 +31,10 @@ spring:
           destination: DOCUMENT-MESSAGE-TOPIC # 目的地。这里使用 RocketMQ Topic
           content-type: application/json # 内容格式。这里使用 JSON
           group: message-center-group # 消费者分组
+          # Consumer 配置项，对应 ConsumerProperties 类
+          consumer:
+            # 禁用 Spring Cloud Stream 提供的重试功能，使用 RocketMQ 提供的重试功能
+            max-attempts: 1
       # Spring Cloud Stream RocketMQ 配置项
       rocketmq:
         # RocketMQ Binder 配置项，对应 RocketMQBinderConfigurationProperties 类
@@ -27,6 +47,7 @@ spring:
             consumer:
               enabled: true # 是否开启消费，默认为 true
               broadcasting: false # 是否使用广播消费，默认为 false 使用集群消费
+              delay-level-when-next-consume: 0 # 异步消费消息模式下消费失败重试策略，默认为 0
 
   mail:
     # 邮件服务地址
@@ -38,7 +59,7 @@ spring:
     # 用户名
     username: 1442803701@qq.com
     # 授权码，就是我们刚才准备工作获取的代码
-    password:
+    password: zphongnmdycvfgdh
     # 其它参数
     properties:
       mail:

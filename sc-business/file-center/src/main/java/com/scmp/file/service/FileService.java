@@ -2,6 +2,7 @@ package com.scmp.file.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.scmp.domain.FileSystem;
+import com.scmp.domain.Result;
 import com.scmp.file.mapper.FileMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.csource.common.NameValuePair;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Coconut Tree
@@ -22,16 +25,13 @@ import java.io.IOException;
 @Service
 public class FileService {
 
-
     @Autowired
     private FileMapper fileMapper;
 
     public FileSystem upload(@RequestParam("file") MultipartFile file,
-                         @RequestParam("fileTag") String fileTag,
-                         @RequestParam("fileInfo") String fileInfo) throws IOException {
-        /**
-         * 还需要获取上传人信息 uploaderName，可以存入 数据库 fileSystem表 中
-         */
+                             @RequestParam("fileTag") String fileTag,
+                             @RequestParam("fileInfo") String fileInfo,
+                             String uploaderName) throws IOException {
         // 上传文件返回类型
         FileSystem fileSystem = new FileSystem();
         //得到 文件的原始名称
@@ -62,8 +62,8 @@ public class FileService {
             fileSystem.setFileType(extention);
             fileSystem.setFileUrl(fileUrl);
             fileSystem.setFileSize(fileSize);
-            fileSystem.setFileTag(fileTag);
             fileSystem.setFileInfo(fileInfo);
+            fileSystem.setUploaderName(uploaderName);
 
             //关闭trackerServer的连接
             trackerServer.close();
@@ -106,11 +106,13 @@ public class FileService {
         fileMapper.insert(fileSystem);
     }
 
-
     public FileSystem getFileSystemByFileName(String fileName) {
         QueryWrapper<FileSystem> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("file_name", fileName);
         return fileMapper.selectOne(queryWrapper);
     }
 
+    public List<FileSystem> getAllFiles() {
+        return fileMapper.selectList(null);
+    }
 }

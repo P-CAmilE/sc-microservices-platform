@@ -1,8 +1,8 @@
 package com.scmp.domain;
 
-//import com.baomidou.mybatisplus.annotation.IdType;
-//import com.baomidou.mybatisplus.annotation.TableId;
-//import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@TableName("file_system")
+@TableName("file_system")
 public class FileSystem {
     /**
      * 文件 id
      */
-//    @TableId(type = IdType.UUID)
-    private int fileId;
+    @TableId(type = IdType.ASSIGN_ID)
+    private Long fileId;
     /**
      * 文件大小
      */

@@ -26,7 +26,6 @@ public class MailService {
     @Autowired
     private JavaMailSender mailSender;
 
-
     /**
      * 根据 rocketmq 收到的信息 发送邮件
      * @param dMessage
@@ -53,9 +52,9 @@ public class MailService {
         simpleMailMessage.setText(text);
         try {
             mailSender.send(simpleMailMessage);
+            log.warn("message-center|sendMailOk|from: {} ==> to: {}", from, to);
         } catch (Exception e) {
-            log.info("消息中心|发送邮件失败|原因：{}", e.toString());
-//            e.printStackTrace();
+            log.error("message-center|errorSendMail|cause: {}", e.toString());
         }
     }
 

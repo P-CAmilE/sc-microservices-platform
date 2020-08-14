@@ -76,10 +76,4 @@ public class UserController {
     public boolean checkUserTime(@RequestParam("userAccount") String userAccount) {
         return userService.checkUserTime(userAccount);
     }
-
-//    @GetMapping("/getEmailByUsernameAndDepartment")
-//    String getEmailByUsernameAndDepartment(@RequestParam("department") String department,
-//                                           @RequestParam("username") String username) {
-//        return "codefish@whu.edu.cn";
-//    }
 }

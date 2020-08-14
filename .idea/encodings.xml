@@ -2,7 +2,6 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/sc-business/commons-domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sc-business/commons-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sc-business/document-center/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sc-business/document-center/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sc-business/file-center/src/main/java" charset="UTF-8" />
@@ -11,16 +10,9 @@
     <file url="file://$PROJECT_DIR$/sc-business/message-center/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sc-business/user-center/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sc-business/user-center/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sc-commons/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sc-commons/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sc-config/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sc-config/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sc-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sc-gateway/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sc-monitor/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sc-monitor/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sc-uua/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sc-uua/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
