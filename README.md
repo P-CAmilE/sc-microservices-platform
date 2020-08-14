@@ -4,7 +4,7 @@
 
 ## Project structure
 
-![微服务架构](README.assets/微服务架构.jpg)
+![微服务架构](readme.assets/微服务架构.jpg)
 
 ```lua
 sc-microservices-platform -- 父项目，公共依赖
@@ -29,9 +29,9 @@ sc-microservices-platform -- 父项目，公共依赖
 
 ## 功能简介
 
-![JWT](README.assets/JWT.jpg)
+![JWT](readme.assets/JWT.jpg)
 
-![功能点](README.assets/功能点.jpg)
+![功能点](readme.assets/功能点.jpg)
 
 ### document-center
 
@@ -86,29 +86,29 @@ sc-microservices-platform -- 父项目，公共依赖
 
 ### Nacos
 
-![nacos-discovery](README.assets/nacos-discovery.png)
+![nacos-discovery](readme.assets/nacos-discovery.png)
 
 ### RocketMQ
 
-![rocketmq-console](README.assets/rocketmq-console.png)
+![rocketmq-console](readme.assets/rocketmq-console.png)
 
 ### Sentinel
 
-![sentinel-moniter](README.assets/sentinel-moniter.png)
+![sentinel-moniter](readme.assets/sentinel-moniter.png)
 
-![sentinel-dashboard](README.assets/sentinel-dashboard.png)
+![sentinel-dashboard](readme.assets/sentinel-dashboard.png)
 
 ### Zipkin
 
-![zipkin](README.assets/zipkin.png)
+![zipkin](readme.assets/zipkin.png)
 
 ### Elasticsearch
 
-![elasticsearch](README.assets/elasticsearch.png)
+![elasticsearch](readme.assets/elasticsearch.png)
 
 ### Kibana
 
-![kibana](README.assets/kibana.png)
+![kibana](readme.assets/kibana.png)
 
 
 
@@ -118,21 +118,21 @@ sc-microservices-platform -- 父项目，公共依赖
 
 ### user-center || register -> login (JWT)
 
-![register-success](README.assets/register-success.png)
+![register-success](readme.assets/register-success.png)
 
-![login-success-get-jwt](README.assets/login-success-get-jwt.png)
+![login-success-get-jwt](readme.assets/login-success-get-jwt.png)
 
 ### file-center || upload -> download
 
-![文件上传成功](README.assets/文件上传成功.png)
+![文件上传成功](readme.assets/文件上传成功.png)
 
-![文件下载成功](README.assets/文件下载成功.png)
+![文件下载成功](readme.assets/文件下载成功.png)
 
 ### document-center -> rocketmq -> message-center -> mail
 
-![发送公文成功](README.assets/发送公文成功.png)
+![发送公文成功](readme.assets/发送公文成功.png)
 
-![rocketmq-console-查看消息](README.assets/rocketmq-console-查看消息.png)
+![rocketmq-console-查看消息](readme.assets/rocketmq-console-查看消息.png)
 
-![收到邮件](README.assets/收到邮件.png)
+![收到邮件](readme.assets/收到邮件.png)
 
