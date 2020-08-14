@@ -17,7 +17,7 @@ spring:
 #          uri: http://localhost:8084
 #          order: 1
 #          predicates:
-#            - Path=/service-user/**
+#            - Path=/user-service/**
 #          filters:
 #            - StripPrefix=1
 
