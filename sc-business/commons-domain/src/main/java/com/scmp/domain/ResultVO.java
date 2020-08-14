@@ -6,6 +6,8 @@ public class ResultVO<T> {
     private String message;
     private T data;
 
+    public ResultVO() {}
+
     public ResultVO(int code, String message, T data) {
         this.code    = code;
         this.message = message;
