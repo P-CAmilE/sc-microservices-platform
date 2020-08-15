@@ -1,8 +1,10 @@
-# Temp Readme
+# sc-microservices-platform
 
-> 暂时记录进度，开发完成后更新完善
+> spring-cloud 微服务架构
 
 ## Project structure
+
+![微服务架构](readme.assets/微服务架构.jpg)
 
 ```lua
 sc-microservices-platform -- 父项目，公共依赖
@@ -12,51 +14,33 @@ sc-microservices-platform -- 父项目，公共依赖
 │  │  ├─file-center -- 文件中心[8082]
 │  │  ├─message-center -- 消息中心[8083]
 │  │  ├─user-center -- 用户中心[8084]
-│  │─sc-commons -- 通用工具一级工程
-│  │  ├─尚未编码，可以自定义一些 spring-boot-starter
-│  ├─sc-config -- 配置中心，其余模块可以引入该以来，统一配置
-│  ├─sc-gateway -- api网关一级工程
-│  │  ├─尚未编码，可以自定义一些 spring-boot-starter
-│  ├─zlt-monitor -- 监控一级工程
-│  │  ├─sc-admin -- 应用监控--尚未开发
-│  │  ├─log-center -- 日志中心--已经搭好elkf框架，最后整合
-│  ├─zlt-uaa -- spring-security认证中心--尚未开发，使用jwt
+│  ├─sc-config -- 配置中心，其余模块可以引入此模块，以统一配置
+│  ├─sc-gateway -- api网关一级工程[8080] -- jwt验证
+│  ├─db-sql -- 数据库SQL文件
+```
+
+## 开发环境
+
+```shell
+---------------------------------------------------------------------------------------------
 ```
 
 
 
-## 目前效果
+## 功能简介
 
-### 邮件
+![JWT](readme.assets/JWT.jpg)
 
-> 邮件发送成功
->
-> 1. 公文中心 调用 用户中心 检查状态
-> 2. 公文中心 rocketmq 向 消息中心 发送 自定义消息 DMessage
-> 3. 消息中心收到 rocketmq 消息，向用户发送邮件
-
-![邮件发送成功](readme.assets/邮件发送成功.png)
-
-### ELKF 日志系统可视化
-
-> 虚拟机搭建
->
-> 以下显示数据为 demo 数据，并未连接项目，自定义 log pattern 后连接
-
-![日志系统-kibana](readme.assets/日志系统-kibana.png)
-
-## 目前功能
+![功能点](readme.assets/功能点.jpg)
 
 ### document-center
 
-```lua
+```shell
 # 发送公文
 │  ├─openfeign -- 集成 sentinel 实现了 fallback
-│  │  ├─调用 user-center -- 判断时间条件
-│  │  ├─调用 user-center -- 获取用户信息(username，department，email)
+│  │  ├─调用 user-center -- 判断时间条件,获取用户信息
 │  ├─rocketmq
 │  │  ├─向 message-center -- 发送 DMessage(包含用户邮件信息)
-│  │  ├─调用 user-center -- 获取用户信息(username，department，email)
 ```
 
 ### message-center
@@ -72,7 +56,10 @@ sc-microservices-platform -- 父项目，公共依赖
 ### user-center
 
 ```shell
-# 未连接数据库，对于 d-c 的服务调用 直接返回模拟数据
+│  ├─JWT
+│  │  ├─生成并验证 JWT
+│  ├─api
+│  │  ├─ CRUD (user & department) api
 ```
 
 ### file-center
@@ -87,7 +74,65 @@ sc-microservices-platform -- 父项目，公共依赖
 ### ELKF 日志框架
 
 ```shell
-# 完成搭建，可以跑demo
-# 部署过程真的坑
+│  ├─elasticsearch
+│  ├─logstash
+│  ├─kibana
+│  ├─filebeat
 ```
+
+
+
+## Project screenshots I
+
+### Nacos
+
+![nacos-discovery](readme.assets/nacos-discovery.png)
+
+### RocketMQ
+
+![rocketmq-console](readme.assets/rocketmq-console.png)
+
+### Sentinel
+
+![sentinel-moniter](readme.assets/sentinel-moniter.png)
+
+![sentinel-dashboard](readme.assets/sentinel-dashboard.png)
+
+### Zipkin
+
+![zipkin](readme.assets/zipkin.png)
+
+### Elasticsearch
+
+![elasticsearch](readme.assets/elasticsearch.png)
+
+### Kibana
+
+![kibana](readme.assets/kibana.png)
+
+
+
+## Project screenshots II
+
+> All Request sent to the **Api-Gateway**
+
+### user-center || register -> login (JWT)
+
+![register-success](readme.assets/register-success.png)
+
+![login-success-get-jwt](readme.assets/login-success-get-jwt.png)
+
+### file-center || upload -> download
+
+![文件上传成功](readme.assets/文件上传成功.png)
+
+![文件下载成功](readme.assets/文件下载成功.png)
+
+### document-center -> rocketmq -> message-center -> mail
+
+![发送公文成功](readme.assets/发送公文成功.png)
+
+![rocketmq-console-查看消息](readme.assets/rocketmq-console-查看消息.png)
+
+![收到邮件](readme.assets/收到邮件.png)
 

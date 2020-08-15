@@ -12,10 +12,6 @@
         <module>sc-business</module>
         <module>sc-config</module>
         <module>sc-gateway</module>
-        <module>sc-monitor</module>
-        <module>sc-uua</module>
-        <module>sc-commons</module>
-<!--        <module>zdemos</module>-->
     </modules>
 
     <properties>
@@ -29,7 +25,7 @@
         <spring-cloud-dependencies.version>Greenwich.SR6</spring-cloud-dependencies.version>
 
         <fastdfs-client-java.version>1.27.0.0</fastdfs-client-java.version>
-        <mybatis-plus.version>3.2.0</mybatis-plus.version>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <mysql-connector-java.version>5.1.48</mysql-connector-java.version>
     </properties>
 
@@ -80,7 +76,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
+        <!-- 引入 Spring Cloud Sleuth + Zipkin 相关依赖，实现对它们的自动配置，从而实现链路追踪 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

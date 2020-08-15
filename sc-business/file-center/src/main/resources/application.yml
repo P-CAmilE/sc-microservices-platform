@@ -2,17 +2,28 @@ server:
   port: 8082
 
 spring:
-  servlet:
-    multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
   application:
     name: file-service
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.168.3/sc-dev?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://192.168.168.3/se-dev-file?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
+  # Zipkin 配置项，对应 ZipkinProperties 类
+  zipkin:
+    base-url: ${sc.zipkin.base-url} # Zipkin 服务的地址
+    discovery-client-enabled: false # 让 nacos 把它当作一个 url，而不是服务
+  # Spring Cloud Sleuth 配置项
+  sleuth:
+    # Spring Cloud Sleuth 针对 Web 组件的配置项，例如说 SpringMVC
+    web:
+      enabled: true # 是否开启，默认为 true
+    sampler:
+      probability: 1.0 # 采样百分比
   cloud:
     nacos:
       discovery:
@@ -22,12 +33,6 @@ spring:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true # 虽然默认为 true ，但是还是显示去指定下。
-  global-config:
-    db-config:
-      id-type: auto # ID 主键自增
-      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
-      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-  mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.scmp.domain
 
 # logging

@@ -12,15 +12,10 @@ import java.util.Date;
 @Slf4j
 @Component
 public class UserServiceFallBack implements UserService {
-    @Override
-    public boolean checkUserTime(String department, String username, Date nowTime) {
-        log.info("公文中心|调用用户中心|查询用户设定时间|调用失败");
-        return false;
-    }
 
     @Override
-    public String getEmailByUsernameAndDepartment(String department, String username) {
-        log.info("公文中心|调用用户中心|查询用户设定时间|调用失败");
-        return null;
+    public boolean checkUserTime(String userAccount) {
+        log.error("document-center | Failed-callUserService-checkUserTime | userAccount: {}", userAccount);
+        return false;
     }
 }

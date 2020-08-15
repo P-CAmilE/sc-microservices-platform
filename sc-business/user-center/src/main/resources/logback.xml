@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug = "false">
+    <property name="pattern" value="%m%n"/>
+    <property name="log_dir" value="logs"/>
+
+
+    <!--控制台日志输出的 appender
+    生产环境禁用-->
+<!--    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        &lt;!&ndash;控制输出流对象 默认 System.out 改为 System.err&ndash;&gt;-->
+<!--        <target>System.out</target>-->
+<!--        &lt;!&ndash;日志消息格式配置&ndash;&gt;-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${pattern}</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <!--日志文件输出的 appender-->
+    <appender name="file-all" class="ch.qos.logback.core.FileAppender">
+        <!--日志文件保存路径-->
+        <file>${log_dir}/logback-all.log</file>
+        <!--日志消息格式配置-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+<!--    &lt;!&ndash; 所有级别 warn 及以上 日志 &ndash;&gt;-->
+<!--    <appender name="file-warn" class="ch.qos.logback.core.FileAppender">-->
+<!--        &lt;!&ndash;日志文件保存路径&ndash;&gt;-->
+<!--        <file>${log_dir}/logback-warn.log</file>-->
+<!--        &lt;!&ndash;日志消息格式配置&ndash;&gt;-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${pattern}</pattern>-->
+<!--        </encoder>-->
+<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--            <level>WARN</level>-->
+<!--        </filter>-->
+<!--    </appender>-->
+
+    <!--日志拆分和归档压缩的 appender 对象-->
+<!--    <appender name="rollFile" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        &lt;!&ndash;日志文件保存路径&ndash;&gt;-->
+<!--        <file>${log_dir}/roll_logback.log</file>-->
+<!--        &lt;!&ndash;日志消息格式配置&ndash;&gt;-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${pattern}</pattern>-->
+<!--        </encoder>-->
+<!--        &lt;!&ndash;指定拆分规则&ndash;&gt;-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;按照时间和压缩格式声明拆分的文件名&ndash;&gt;-->
+<!--            <fileNamePattern>${log_dir}/rolling.%d{yyyy-MM-dd}.log%i.log</fileNamePattern>-->
+<!--            &lt;!&ndash;按照文件大小拆分&ndash;&gt;-->
+<!--            <maxFileSize>1MB</maxFileSize>-->
+<!--        </rollingPolicy>-->
+<!--        &lt;!&ndash;日志级别过滤器&ndash;&gt;-->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--            &lt;!&ndash;日志过滤规则&ndash;&gt;-->
+<!--            <level>INFO</level>-->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+<!--        </filter>-->
+<!--    </appender>-->
+
+
+<!--    <appender name="mylogger" class="ch.qos.logback.core.FileAppender">-->
+<!--        <file>${log_dir}/my_logback.log</file>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>${pattern}</pattern>-->
+<!--        </encoder>-->
+<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--            <level>WARN</level>-->
+<!--        </filter>-->
+<!--    </appender>-->
+
+    <!--异步日志-->
+<!--    <appender name="async" class="ch.qos.logback.classic.AsyncAppender">-->
+<!--        &lt;!&ndash;指定某个具体的 appender&ndash;&gt;-->
+<!--        &lt;!&ndash; <appender-ref ref="rollFile"/> &ndash;&gt;-->
+<!--        <appender-ref ref="file-warn"/>-->
+<!--        <appender-ref ref="file-all"/>-->
+<!--    </appender>-->
+
+
+    <!-- 代码相关日志   -->
+<!--    <logger name = "com.scmp" level = "INFO" additivity="false">-->
+<!--        <appender-ref ref="mylogger"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="org.springframework" level="warn"/>-->
+<!--    <logger name="ch.qos" level="warn"/>-->
+<!--    <logger name="org.mybatis" level="warn"/>-->
+
+    <!--root logger 配置-->
+    <root level="INFO">
+        <!-- <appender-ref ref="console"/> -->
+<!--        <appender-ref ref="async"/>-->
+<!--        <appender-ref ref="file-warn"/>-->
+        <appender-ref ref="file-all"/>
+    </root>
+
+    <!--自定义 looger 对象
+        additivity="false" 自定义 logger 对象是否继承 rootLogger
+     -->
+</configuration>
