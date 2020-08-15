@@ -21,11 +21,49 @@ sc-microservices-platform -- 父项目，公共依赖
 
 ## 开发环境
 
-```shell
----------------------------------------------------------------------------------------------
-```
+> 运行环境
 
+| 工具     | 版本                                 |
+| -------- | ------------------------------------ |
+| Java     | 8                                    |
+| Maven    | 3.6.3                                |
+| MySQL    | 5.7+，8+                             |
+| IDE      | IntelliJ IDEA 2020.1.4               |
+| Docker   | 19.03.12                             |
+| Linux    | CentOS Linux release 7.4.1708 (Core) |
+| Elastic  | 7.8.0                                |
+| 代码仓库 | Github                               |
 
+> Linux 配置 （虚拟机）
+
+| IP/Port          | Description        |
+| ---------------- | ------------------ |
+| 192.168.168.3    | 虚拟机 IP 地址     |
+| 8848             | nacos-server       |
+| 8910             | sentinel-dashboard |
+| 7777             | rocketmq-console   |
+| 9411             | zipkin（docker）   |
+| 22122,23000,8888 | Fastdfs（docker）  |
+
+| IP/Port       | Description    |
+| ------------- | -------------- |
+| 192.168.168.4 | 虚拟机 IP 地址 |
+| 9200,9300     | Elasticsearch  |
+| 5601          | Kibana         |
+| 5044          | Logstash       |
+
+> 组件选择
+
+- 分布式系统套件版本：Spring Boot 2.x + Spring Cloud + Spring Cloud Alibaba
+- 服务治理注册与发现：Spring Cloud Alibaba Nacos
+- 服务降级、熔断和限流：alibaba/Sentinel
+- 网关路由代理调用：Spring Cloud Gateway
+- 声明式服务调用：Spring Cloud OpenFeign
+- 数据访问层：Mybatis-plus/Mybatis
+- 数据库：MySQL 5.7/MySQL 8
+- 统一日志收集存储：ELK + Filebeat
+- 消息队列：RocketMQ
+- 微服务链式追踪：Zipkin
 
 ## 功能简介
 

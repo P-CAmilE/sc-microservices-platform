@@ -10,11 +10,11 @@
         <module name="log-center" />
         <module name="commons-domain" />
         <module name="sc-config" />
-        <module name="user-center" />
         <module name="file-center" />
         <module name="document-center" />
         <module name="message-center" />
         <module name="sc-gateway" />
+        <module name="user-center" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
