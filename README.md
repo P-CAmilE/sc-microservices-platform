@@ -45,12 +45,13 @@ sc-microservices-platform -- 父项目，公共依赖
 | 9411             | zipkin（docker）   |
 | 22122,23000,8888 | Fastdfs（docker）  |
 
-| IP/Port       | Description    |
-| ------------- | -------------- |
-| 192.168.168.4 | 虚拟机 IP 地址 |
-| 9200,9300     | Elasticsearch  |
-| 5601          | Kibana         |
-| 5044          | Logstash       |
+| IP/Port       | Description            |
+| ------------- | ---------------------- |
+| 192.168.168.4 | 虚拟机 IP 地址         |
+| 9200,9300     | Elasticsearch（docker) |
+| 5601          | Kibana（docker)        |
+| 5044          | Logstash（docker)      |
+| ###           | Filebeat（docker)      |
 
 > 组件选择
 
@@ -64,6 +65,7 @@ sc-microservices-platform -- 父项目，公共依赖
 - 统一日志收集存储：ELK + Filebeat
 - 消息队列：RocketMQ
 - 微服务链式追踪：Zipkin
+- 权限验证：JWT （Java Web Token）
 
 ## 功能简介
 

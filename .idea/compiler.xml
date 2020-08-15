@@ -11,8 +11,8 @@
         <module name="commons-domain" />
         <module name="sc-config" />
         <module name="file-center" />
-        <module name="document-center" />
         <module name="message-center" />
+        <module name="document-center" />
         <module name="sc-gateway" />
         <module name="user-center" />
       </profile>
